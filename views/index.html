@@ -1,0 +1,75 @@
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+    var posluchac = {
+        jmeno: 'posluchac'
+    };
+    var prazdny = {
+        obrazek: 'images/prazdny.png'
+    }
+    
+    var hrac;
+    var hracNaTahu;
+    var socket = io.connect('/');
+    socket.on('nastavHrace', function (data) {
+        hrac = data.hrac;
+        if(hrac.jmeno === 'posluchac'){
+            $('p#hrac').html('Jste posluchač, nemůžete se účastnit hry');
+        } else {
+            $('p#hrac').html('Váš kámen: <img src=\"' + hrac.obrazek + '\" width=\"30\" height=\"30\"></img>');
+        }
+        hracNaTahu = data.naTahu;
+        $('p#naTahu img').attr('src', data.naTahu.obrazek);
+    });
+    socket.on('hra', function(data){
+        $(data.pozice).attr('src', data.hrac.obrazek);
+    });
+    socket.on('hracNaTahu', function(data){
+        hracNaTahu = data;
+        $('p#naTahu img').attr('src', data.obrazek);
+    });
+    socket.on('disconnect', function(){
+        document.write('Server se odpojil, hra skončila.');
+    });
+    socket.on('hracOdpojen', function(){
+        document.write('Jeden z hráčů se odpojil, hra skončila.');
+    });
+    
+    var sloupce = 10;
+    var radky = 10;        
+    function hra(radek, sloupec){
+        if(hrac.jmeno == hracNaTahu.jmeno){
+            var pozice = "#" + radek + "x" + sloupec;
+            var src = $(pozice).attr('src');
+            if(src == prazdny.obrazek){
+                hracNaTahu = null;
+                $(pozice).attr('src', hrac.obrazek);
+                socket.emit('hra', {
+                    hrac: hrac,
+                    pozice: pozice
+                });
+            }
+        }
+    }
+    
+    $(document).ready(function(){       
+        var buff = '<table>';
+        for(i = 1; i<= radky; i++){
+            buff += '<tr>';
+            for(j = 1; j<=sloupce; j++){
+                buff += '<td>';
+                buff += '<img src=\"' + prazdny.obrazek + '" class=\"bunka\" id=\"' + i + 'x' + j + '\" width=\"30px\" height=\"30px\" onclick=\"hra(' + i + ', ' + j + ')\"></img>';
+                buff += '</td>';      
+            }
+            buff += '</tr>';
+        }
+        buff += '</table>';
+        $('div#hraciPole').append(buff);
+        
+    });
+</script>
+
+<h1>Piškvorky</h1>
+<p id="hrac"></p>
+<p id="naTahu">Právě táhne: <img width="30" height="30"></img></p>
+<div id="hraciPole">
+</div>
