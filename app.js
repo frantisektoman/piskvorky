@@ -47,8 +47,8 @@ io.sockets.on('connection', function(socket){
     socket.on('hra', function(data){
        console.log("hra: " + data.pozice + " hracem " + data.hrac);
        socket.broadcast.emit('hra', data);
-       socket.emit('hracNaTahu', piskvorky.naTahu());
-       socket.broadcast.emit('hracNaTahu', piskvorky.dalsiNaTahu());
+       socket.emit('hracNaTahu', piskvorky.dalsiNaTahu());
+       socket.broadcast.emit('hracNaTahu', piskvorky.naTahu());
     });
     socket.on('disconnect', function(){
         if(hrac.jmeno != 'posluchac'){
