@@ -1,7 +1,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
-    var posluchac = {
-        jmeno: 'posluchac'
+    var divak = {
+        jmeno: 'divak'
     };
     var prazdny = {
         obrazek: 'images/prazdny.png'
@@ -12,8 +12,8 @@
     var socket = io.connect('/');
     socket.on('nastavHrace', function (data) {
         hrac = data.hrac;
-        if(hrac.jmeno === 'posluchac'){
-            $('p#hrac').html('Jste posluchač, nemůžete se účastnit hry');
+        if(hrac.jmeno === 'divak'){
+            $('p#hrac').html('Jste divák, nemůžete se účastnit hry');
         } else {
             $('p#hrac').html('Váš kámen: <img src=\"' + hrac.obrazek + '\" width=\"30\" height=\"30\"></img>');
         }

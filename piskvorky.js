@@ -1,8 +1,8 @@
-var posluchac = {
-    jmeno: 'posluchac',
+var divak = {
+    jmeno: 'divak',
     obrazek: 'images/prazdny.png'
 };
-exports.posluchac = posluchac;
+exports.divak = divak;
 var prazdny = {
     jmeno: 'prazdny',
     obrazek: 'images/prazdny.png'
@@ -39,13 +39,13 @@ exports.novyHrac = function(){
         posledniHrac = kameny[0];
         return posledniHrac;
     }
-    if(posledniHrac === posluchac){
+    if(posledniHrac === divak){
         return posledniHrac;
     }
     for(i = 0; i<=kameny.length; i++){
         if(kameny[i] === posledniHrac) {
             if(i == kameny.length-1){
-                posledniHrac = posluchac;
+                posledniHrac = divak;
             } else {
                 posledniHrac = kameny[i+1];
             }

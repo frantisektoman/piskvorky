@@ -51,7 +51,7 @@ io.sockets.on('connection', function(socket){
        socket.broadcast.emit('hracNaTahu', piskvorky.naTahu());
     });
     socket.on('disconnect', function(){
-        if(hrac.jmeno != 'posluchac'){
+        if(hrac.jmeno != 'divak'){
             socket.broadcast.emit('hracOdpojen');
         }
     });
