@@ -1,3 +1,10 @@
-Server se spustí "$ node app.js", běží na portu 3000. Port lze změnit v app.js:61.
-První připojený uživatel dostane kolečko, druhý křížek, všichni ostatní jsou diváci.
+Ke spuštění ukázky je potřeba nainstalovat Node.js, který je ke stažení na http://nodejs.org/#download pod licencí MIT.
+
+Spuštění hry:
+1. Server se spustí z příkazové řádky zápisem "node app.js".
+2. Standardně běží na portu 3000. Port lze změnit ve skriptu app.js jako první parametr funkce app.listen().
+3. Ve webovém prohlížeči otevřete alespoň ve dvou oknech stránku http://localhost:<číslo-portu>/
+4. První připojený uživatel(tzn. první otevřené okno) dostane kolečko, druhý křížek, všichni ostatní jsou diváci.
+5. Klikejte na hrací pole a sledujte realtime aktualizování informací v ostatních oknech.
+
 Po odpojení jednoho z hráčů je potřeba nejdříve odpojit všechny další uživatele (hráče i diváky) a poté restartovat server.
