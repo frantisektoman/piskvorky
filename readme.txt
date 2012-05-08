@@ -8,3 +8,6 @@ Spuštění hry:
 5. Klikejte na hrací pole a sledujte realtime aktualizování informací v ostatních oknech.
 
 Po odpojení jednoho z hráčů je potřeba nejdříve odpojit všechny další uživatele (hráče i diváky) a poté restartovat server.
+
+Aplikace byla vyvinuta a testována na Node.js v0.6.14
+a prohlížečích Google Chrome 18, Opera 11, Mozilla Firefox 8, Internet Explorer 9 a mobilních Opera Mobile 12, Android Browser 2.3, Amazon Kindle 4
